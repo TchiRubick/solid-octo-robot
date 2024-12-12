@@ -2,10 +2,8 @@
 
 import { db } from "@/packages/db";
 import { SessionTable, UserTable } from "@/packages/db/schemas";
-import { sha256 } from "@oslojs/crypto/sha2";
 import {
-  encodeBase32LowerCaseNoPadding,
-  encodeHexLowerCase,
+  encodeBase32LowerCaseNoPadding
 } from "@oslojs/encoding";
 import { eq } from "drizzle-orm";
 import type { Session, SessionValidationResult } from "./type";
@@ -33,11 +31,7 @@ export class SessionManager {
     await db.delete(SessionTable).where(eq(SessionTable.id, sessionId));
   }
 
-  static async validateToken(token: string): Promise<SessionValidationResult> {
-    const sessionId = encodeHexLowerCase(
-      sha256(new TextEncoder().encode(token)),
-    );
-
+  static async validateToken(sessionId: string): Promise<SessionValidationResult> {
     const result = await db
       .select({ user: UserTable, session: SessionTable })
       .from(SessionTable)

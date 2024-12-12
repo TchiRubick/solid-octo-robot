@@ -18,6 +18,8 @@ export const env = createEnv({
     MINIO_PUBLIC_DOMAIN: z.string(),
     MINIO_SSL: z.literal("true").nullable().optional(),
     MINIO_PORT: z.coerce.number().optional(),
+    NOTION_INTEGRATION_SECRET: z.string(),
+    OPENAI_SECRET_KEY: z.string()
   },
 
   /**
@@ -45,6 +47,8 @@ export const env = createEnv({
     MINIO_PUBLIC_DOMAIN: process.env.MINIO_PUBLIC_DOMAIN,
     MINIO_SSL: process.env.MINIO_SSL,
     MINIO_PORT: process.env.MINIO_PORT,
+    NOTION_INTEGRATION_SECRET: process.env.NOTION_INTEGRATION_SECRET,
+    OPENAI_SECRET_KEY: process.env.OPENAI_SECRET_KEY,
     // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
   },
   /**
